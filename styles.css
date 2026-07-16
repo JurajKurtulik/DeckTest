@@ -182,7 +182,7 @@ button {
   display: grid;
   align-items: center;
   min-height: 100vh;
-  padding: 6rem clamp(1rem, 3vw, 3.2rem) 5.5rem;
+  padding: 6rem clamp(1.5rem, 3.8vw, 5.2rem) 5.5rem;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   isolation: isolate;
@@ -209,13 +209,13 @@ button {
 }
 
 .panel-grid {
-  width: min(1480px, 100%);
+  width: 100%;
   margin: 0 auto;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.7fr);
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.85fr);
   gap: clamp(2rem, 6vw, 5rem);
   align-items: center;
 }
@@ -951,18 +951,177 @@ h3 {
   transform: none;
 }
 
+.timeline-card,
+.agenda-grid article,
+.metric-card,
+.pattern-card,
+.decision,
+.answer-card,
+.detail-card,
+.feature-stack span,
+.comparison-table [role="row"],
+.split-cards article,
+.versus article,
+.mode-grid article,
+.habit-grid article,
+.mistake-list article,
+.demo-steps article,
+.takeaway-list li,
+.next-week {
+  will-change: transform, opacity;
+}
+
+.panel.is-visible .timeline-card,
+.panel.is-visible .agenda-grid article,
+.panel.is-visible .metric-card,
+.panel.is-visible .pattern-card,
+.panel.is-visible .decision,
+.panel.is-visible .answer-card,
+.panel.is-visible .detail-card,
+.panel.is-visible .feature-stack span,
+.panel.is-visible .comparison-table [role="row"],
+.panel.is-visible .split-cards article,
+.panel.is-visible .versus article,
+.panel.is-visible .mode-grid article,
+.panel.is-visible .habit-grid article,
+.panel.is-visible .mistake-list article,
+.panel.is-visible .demo-steps article,
+.panel.is-visible .takeaway-list li,
+.panel.is-visible .next-week {
+  animation: cardRise 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.panel.is-visible .timeline-card:nth-child(2),
+.panel.is-visible .agenda-grid article:nth-child(2),
+.panel.is-visible .metric-card:nth-child(2),
+.panel.is-visible .pattern-card:nth-child(2),
+.panel.is-visible .decision:nth-child(2),
+.panel.is-visible .comparison-table [role="row"]:nth-child(2),
+.panel.is-visible .split-cards article:nth-child(2),
+.panel.is-visible .versus article:nth-child(2),
+.panel.is-visible .mode-grid article:nth-child(2),
+.panel.is-visible .habit-grid article:nth-child(2),
+.panel.is-visible .mistake-list article:nth-child(2),
+.panel.is-visible .demo-steps article:nth-child(2),
+.panel.is-visible .takeaway-list li:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.panel.is-visible .timeline-card:nth-child(3),
+.panel.is-visible .agenda-grid article:nth-child(3),
+.panel.is-visible .metric-card:nth-child(3),
+.panel.is-visible .pattern-card:nth-child(3),
+.panel.is-visible .decision:nth-child(3),
+.panel.is-visible .comparison-table [role="row"]:nth-child(3),
+.panel.is-visible .mode-grid article:nth-child(3),
+.panel.is-visible .habit-grid article:nth-child(3),
+.panel.is-visible .mistake-list article:nth-child(3),
+.panel.is-visible .demo-steps article:nth-child(3),
+.panel.is-visible .takeaway-list li:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.panel.is-visible .timeline-card:nth-child(4),
+.panel.is-visible .agenda-grid article:nth-child(4),
+.panel.is-visible .pattern-card:nth-child(4),
+.panel.is-visible .decision:nth-child(4),
+.panel.is-visible .comparison-table [role="row"]:nth-child(4),
+.panel.is-visible .habit-grid article:nth-child(4),
+.panel.is-visible .mistake-list article:nth-child(4),
+.panel.is-visible .takeaway-list li:nth-child(4) {
+  animation-delay: 210ms;
+}
+
+.panel.is-visible .timeline-card:nth-child(5),
+.panel.is-visible .agenda-grid article:nth-child(5),
+.panel.is-visible .pattern-card:nth-child(5),
+.panel.is-visible .decision:nth-child(5),
+.panel.is-visible .comparison-table [role="row"]:nth-child(5),
+.panel.is-visible .habit-grid article:nth-child(5),
+.panel.is-visible .mistake-list article:nth-child(5),
+.panel.is-visible .takeaway-list li:nth-child(5) {
+  animation-delay: 280ms;
+}
+
+.panel.is-visible .timeline-card:nth-child(6),
+.panel.is-visible .agenda-grid article:nth-child(6),
+.panel.is-visible .comparison-table [role="row"]:nth-child(6),
+.panel.is-visible .takeaway-list li:nth-child(6) {
+  animation-delay: 350ms;
+}
+
+.panel.is-visible .era-track::before {
+  transform-origin: left center;
+  animation: lineGrow 900ms ease both, lineGlow 4s ease-in-out 950ms infinite;
+}
+
+.panel.is-visible .metric-card strong {
+  animation: metricLift 860ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.pattern-card.active img,
+.answer-card img,
+.detail-card img {
+  animation: iconFloat 4.8s ease-in-out infinite;
+}
+
+.pattern-card.active {
+  box-shadow: 0 1.4rem 4rem rgba(255, 89, 111, 0.22), inset 0 0 2rem rgba(255, 89, 111, 0.08);
+}
+
+.comparison-table [role="row"] {
+  position: relative;
+  overflow: hidden;
+}
+
+.comparison-table [role="row"]::after,
+.callout::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.13) 48%, transparent 58%);
+  transform: translateX(-130%);
+}
+
+.panel.is-visible .comparison-table [role="row"]::after,
+.panel.is-visible .callout::after {
+  animation: scanAcross 1.8s ease both;
+}
+
+.callout {
+  position: relative;
+  overflow: hidden;
+}
+
+.decision-board {
+  position: relative;
+}
+
+.decision-board::before {
+  content: "";
+  position: absolute;
+  inset: -1rem;
+  z-index: -1;
+  border-radius: 1rem;
+  background: radial-gradient(circle at 75% 50%, rgba(34, 211, 238, 0.18), transparent 35rem);
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.panel.is-visible .decision-board::before {
+  opacity: 1;
+  animation: softBreathe 5.5s ease-in-out infinite;
+}
+
 @media (min-width: 1400px) {
   .panel {
-    padding-left: clamp(3rem, 4vw, 5rem);
-    padding-right: clamp(3rem, 4vw, 5rem);
-  }
-
-  .panel-grid {
-    width: min(1760px, 100%);
+    padding-left: clamp(3rem, 4.2vw, 5.5rem);
+    padding-right: clamp(3rem, 4.2vw, 5.5rem);
   }
 
   .hero-grid {
-    grid-template-columns: minmax(0, 1.15fr) minmax(26rem, 0.85fr);
+    grid-template-columns: minmax(0, 1.02fr) minmax(28rem, 0.98fr);
   }
 
   h1 {
@@ -998,10 +1157,6 @@ h3 {
 }
 
 @media (min-width: 1700px) {
-  .panel-grid {
-    width: min(1840px, calc(100vw - 9rem));
-  }
-
   .timeline-card,
   .agenda-grid article,
   .metric-card,
@@ -1025,6 +1180,66 @@ h3 {
   50% {
     opacity: 0.45;
     transform: rotateZ(24deg) rotateX(60deg) scale(1.05);
+  }
+}
+
+@keyframes cardRise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.1rem, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes lineGrow {
+  from {
+    transform: scaleX(0);
+    opacity: 0.35;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes lineGlow {
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 0.8rem rgba(34, 211, 238, 0.35));
+  }
+}
+
+@keyframes metricLift {
+  from {
+    opacity: 0;
+    transform: translateY(0.8rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes iconFloat {
+  50% {
+    transform: translateY(-0.28rem) scale(1.035);
+    filter: drop-shadow(0 0 1.2rem rgba(34, 211, 238, 0.22));
+  }
+}
+
+@keyframes scanAcross {
+  to {
+    transform: translateX(130%);
+  }
+}
+
+@keyframes softBreathe {
+  50% {
+    transform: scale(1.018);
+    opacity: 0.75;
   }
 }
 
