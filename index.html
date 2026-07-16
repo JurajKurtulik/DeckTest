@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Interactive presentation website for Fabric in 6 Weeks, Week 3: Data Ingestion Five Patterns.">
+    <title>Fabric in 6 Weeks | Week 3 Data Ingestion</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar" aria-label="Presentation controls">
+      <div class="brand-lockup">
+        <img src="assets/fabric-mark.png" alt="Microsoft Fabric mark" class="fabric-mark">
+        <div>
+          <span>Fabric in 6 Weeks</span>
+          <strong>Week 3: Data Ingestion</strong>
+        </div>
+      </div>
+      <div class="td-brand" aria-label="TD SYNNEX branding">TD SYNNEX</div>
+      <nav class="section-menu" aria-label="Section navigation">
+        <button type="button" data-target="hero">Start</button>
+        <button type="button" data-target="patterns">Patterns</button>
+        <button type="button" data-target="decision">Decision</button>
+        <button type="button" data-target="cost">Cost</button>
+        <button type="button" data-target="demo">Demo</button>
+      </nav>
+    </header>
+
+    <main id="main" class="snap-deck" tabindex="-1">
+      <section id="hero" class="panel hero" data-title="Start">
+        <div class="panel-grid hero-grid">
+          <div class="eyebrow">Partner Training Series</div>
+          <div class="hero-copy">
+            <p class="week-label">Week 3</p>
+            <h1>Data Ingestion<br>Five Patterns</h1>
+            <p class="lede">Getting data into Microsoft Fabric: Pipelines, Dataflows Gen2, Copy Job, Shortcuts, Mirroring, and when to choose which.</p>
+            <div class="session-meta">
+              <span>Juraj Kurtulik</span>
+              <span>Solutions Architect - CoE Microsoft, TD SYNNEX</span>
+              <span>2 June 2026, 10:00-11:30 CEST</span>
+            </div>
+          </div>
+          <div class="orbital-stage" aria-hidden="true">
+            <img src="assets/fabric-mark.png" alt="">
+            <div class="orbit orbit-a"></div>
+            <div class="orbit orbit-b"></div>
+            <div class="orbit orbit-c"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="series" class="panel" data-title="Series">
+        <div class="panel-grid">
+          <div class="section-kicker">Where We Are</div>
+          <div class="section-heading">
+            <h2>From foundations to building.</h2>
+            <p>This is where the series starts moving real customer data into Fabric.</p>
+          </div>
+          <div class="timeline" aria-label="Fabric in 6 Weeks timeline">
+            <article class="timeline-card complete"><span>01</span><h3>Vision, Value & Platform</h3><p>What Fabric is and why it exists</p></article>
+            <article class="timeline-card complete"><span>02</span><h3>Workloads & Capacity</h3><p>The 7 workloads and capacity model</p></article>
+            <article class="timeline-card current"><span>03</span><h3>Data Ingestion</h3><p>Five patterns to bring data in</p></article>
+            <article class="timeline-card"><span>04</span><h3>Engineering & Science</h3><p>Medallion, Spark, and ML</p></article>
+            <article class="timeline-card"><span>05</span><h3>Real-Time & Activator</h3><p>Streams, KQL, automated actions</p></article>
+            <article class="timeline-card"><span>06</span><h3>Copilot & Data Agents</h3><p>AI for analytics and operations</p></article>
+          </div>
+          <p class="callout">Pace shift: weeks 1 and 2 built the conceptual foundation. Today includes a 30-minute live build that lands real data in OneLake.</p>
+        </div>
+      </section>
+
+      <section id="agenda" class="panel" data-title="Agenda">
+        <div class="panel-grid">
+          <div class="section-kicker">Today</div>
+          <div class="section-heading">
+            <h2>Five patterns. One decision framework. Thirty minutes of live building.</h2>
+            <p>Goal: recommend the right ingestion pattern for any customer scenario and explain why in one sentence.</p>
+          </div>
+          <div class="agenda-grid">
+            <article><span>01</span><h3>The ingestion challenge</h3><p>Variety, velocity, and volume.</p></article>
+            <article><span>02</span><h3>The 5 Fabric patterns</h3><p>Pipelines, Dataflows Gen2, Copy Job, Shortcuts, Mirroring.</p></article>
+            <article><span>03</span><h3>Pattern deep dives</h3><p>What each does well, what it does not, who uses it.</p></article>
+            <article><span>04</span><h3>Best practices & cost</h3><p>Incremental loads, load modes, capacity-friendly scheduling.</p></article>
+            <article><span>05</span><h3>Cost of ingestion</h3><p>CU-aware operating habits and common mistakes.</p></article>
+            <article><span>06</span><h3>Live demo</h3><p>Copy Job, Shortcut, and Mirroring side by side.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="challenge" class="panel chapter" data-title="Challenge">
+        <div class="chapter-number">01</div>
+        <div class="chapter-copy">
+          <p class="section-kicker">The Challenge</p>
+          <h2>Ingestion can be harder than it looks.</h2>
+          <p>Every customer has dozens of sources, multiple formats, and conflicting cadences. Getting it right is the foundation everything else stands on.</p>
+        </div>
+      </section>
+
+      <section id="complexity" class="panel" data-title="Complexity">
+        <div class="panel-grid">
+          <div class="section-heading">
+            <p class="section-kicker">The Challenge</p>
+            <h2>Three dimensions of complexity compound fast.</h2>
+          </div>
+          <div class="metric-grid">
+            <article class="metric-card hot"><span>Variety</span><strong>100+</strong><p>Source system types in a typical mid-market estate: SQL, NoSQL, files, APIs, SaaS apps, IoT, mainframe.</p></article>
+            <article class="metric-card amber"><span>Velocity</span><strong>ms -> days</strong><p>Some data must arrive in seconds. Some can wait until midnight. One pipeline cannot optimize for both.</p></article>
+            <article class="metric-card violet"><span>Volume</span><strong>MB -> TB</strong><p>A pilot may be a few hundred MB. Production can grow into terabytes, so the cost model has to scale linearly.</p></article>
+          </div>
+          <p class="callout danger">The mistake: picking one ingestion tool, then forcing every scenario into it. Fabric gives you five. Use the right one each time.</p>
+        </div>
+      </section>
+
+      <section id="evolution" class="panel" data-title="Evolution">
+        <div class="panel-grid">
+          <div class="section-heading">
+            <p class="section-kicker">The Evolution</p>
+            <h2>ETL -> ELT -> Zero-ETL</h2>
+            <p>Fabric supports all three eras. The skill is knowing when each fits the customer reality.</p>
+          </div>
+          <div class="era-track">
+            <article>
+              <span>1990s-2010s</span>
+              <h3>ETL</h3>
+              <p>Extract, Transform, Load. Curated and governed, but slow, brittle, and expensive to change.</p>
+            </article>
+            <article>
+              <span>2010s-today</span>
+              <h3>ELT</h3>
+              <p>Extract, Load, Transform. Flexible, fast, and scalable, but still creates another copy.</p>
+            </article>
+            <article>
+              <span>2023+</span>
+              <h3>Zero-ETL</h3>
+              <p>Read in place. Zero copy and near-real-time, with stronger dependency on open formats and governance.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="patterns" class="panel" data-title="Patterns">
+        <div class="panel-grid">
+          <div class="section-heading">
+            <p class="section-kicker">The Five Patterns</p>
+            <h2>Five ways to bring data into Microsoft Fabric.</h2>
+            <p>All five land data in OneLake. All five are part of Fabric: one bill, one governance model.</p>
+          </div>
+          <div class="pattern-grid" role="list">
+            <button class="pattern-card active" type="button" data-pattern="pipelines" role="listitem">
+              <img src="assets/image6.png" alt="">
+              <span>01</span><h3>Pipelines</h3><p>Orchestrate copy plus control flow. 200+ connectors.</p><strong>Best for data engineers</strong>
+            </button>
+            <button class="pattern-card" type="button" data-pattern="dataflows" role="listitem">
+              <img src="assets/image7.png" alt="">
+              <span>02</span><h3>Dataflows Gen2</h3><p>Low-code self-service ETL with rich transforms.</p><strong>Best for citizen developers</strong>
+            </button>
+            <button class="pattern-card" type="button" data-pattern="copyjob" role="listitem">
+              <img src="assets/image8.png" alt="">
+              <span>03</span><h3>Copy Job</h3><p>Set-and-forget bulk and incremental copy, no DAG.</p><strong>Best for anyone moving data</strong>
+            </button>
+            <button class="pattern-card" type="button" data-pattern="shortcuts" role="listitem">
+              <img src="assets/image9.png" alt="">
+              <span>04</span><h3>Shortcuts</h3><p>Point at data where it lives: zero copy.</p><strong>Best for architects</strong>
+            </button>
+            <button class="pattern-card" type="button" data-pattern="mirroring" role="listitem">
+              <img src="assets/image10.png" alt="">
+              <span>05</span><h3>Mirroring</h3><p>Continuous replication of OLTP sources into OneLake.</p><strong>Best for DBAs and engineers</strong>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="decision" class="panel" data-title="Decision">
+        <div class="panel-grid decision-layout">
+          <div class="section-heading">
+            <p class="section-kicker">Decision Framework</p>
+            <h2>Which pattern when?</h2>
+            <p>Click a customer statement to reveal the recommended Fabric pattern.</p>
+          </div>
+          <div class="decision-board">
+            <div class="decision-list" role="list" aria-label="Customer scenarios">
+              <button type="button" class="decision active" data-answer="mirroring">Source is an operational database I need near-real-time?</button>
+              <button type="button" class="decision" data-answer="shortcuts">Data already lives in S3, ADLS, or Dataverse?</button>
+              <button type="button" class="decision" data-answer="copyjob">Bulk plus incremental copy from many sources to OneLake?</button>
+              <button type="button" class="decision" data-answer="dataflows">Self-service transformation by an analyst, low-code?</button>
+              <button type="button" class="decision" data-answer="pipelines">Complex orchestration with control flow and triggers?</button>
+            </div>
+            <article class="answer-card" aria-live="polite">
+              <img id="answerIcon" src="assets/image10.png" alt="">
+              <span id="answerLabel">Use Mirroring</span>
+              <h3 id="answerTitle">Near-real-time operational database replication.</h3>
+              <p id="answerText">Use Mirroring when the source is supported and the customer needs low-latency changes in OneLake without scheduled CDC pipelines.</p>
+            </article>
+          </div>
+          <p class="callout">Rule of thumb: prefer Shortcuts and Mirroring when possible. They save storage, money, and copy bugs.</p>
+        </div>
+      </section>
+
+      <section id="pattern-detail" class="panel" data-title="Deep Dives">
+        <div class="panel-grid detail-layout">
+          <div class="section-heading">
+            <p class="section-kicker">Pattern Deep Dives</p>
+            <h2 id="detailTitle">Pipelines: the workhorse.</h2>
+            <p id="detailIntro">When you need control flow, orchestration, and 200+ connectors, this is the natural next step from Azure Data Factory.</p>
+          </div>
+          <div class="tab-row" role="tablist" aria-label="Pattern details">
+            <button type="button" role="tab" aria-selected="true" data-detail="pipelines">Pipelines</button>
+            <button type="button" role="tab" aria-selected="false" data-detail="dataflows">Dataflows Gen2</button>
+            <button type="button" role="tab" aria-selected="false" data-detail="copyjob">Copy Job</button>
+            <button type="button" role="tab" aria-selected="false" data-detail="shortcuts">Shortcuts</button>
+            <button type="button" role="tab" aria-selected="false" data-detail="mirroring">Mirroring</button>
+          </div>
+          <div class="detail-stage">
+            <article class="detail-card">
+              <img id="detailIcon" src="assets/image6.png" alt="">
+              <h3 id="detailBest">Best for data engineers</h3>
+              <p id="detailBody">Use for multi-step jobs, on-prem ingestion, lift-and-shift from Azure Data Factory, parameters, triggers, and managed connectors.</p>
+            </article>
+            <div class="feature-stack" id="detailFeatures">
+              <span>200+ managed connectors</span>
+              <span>Control flow: If/else, ForEach, Until, Lookup, Switch</span>
+              <span>Triggers, schedules, managed identity, gateway, VNet integration</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="comparison" class="panel" data-title="Compare">
+        <div class="panel-grid">
+          <div class="section-heading">
+            <p class="section-kicker">Copy Job vs Pipelines vs Dataflows Gen2</p>
+            <h2>Three Data Factory items, three different jobs.</h2>
+          </div>
+          <div class="comparison-table" role="table" aria-label="Fabric ingestion comparison">
+            <div role="row" class="table-head"><span role="columnheader">Criteria</span><span role="columnheader">Copy Job</span><span role="columnheader">Pipelines</span><span role="columnheader">Dataflows Gen2</span></div>
+            <div role="row"><span>Primary purpose</span><span>Bulk move</span><span>Orchestration</span><span>Transformation</span></div>
+            <div role="row"><span>Authoring style</span><span>Wizard</span><span>Visual DAG</span><span>Power Query</span></div>
+            <div role="row"><span>Incremental copy</span><span>Yes, built in</span><span>Yes, Copy activity</span><span>Possible</span></div>
+            <div role="row"><span>Transformations</span><span>No</span><span>Yes, any</span><span>Yes, M</span></div>
+            <div role="row"><span>Cost profile</span><span>Lowest CU</span><span>Medium CU</span><span>Higher CU</span></div>
+          </div>
+          <p class="callout">Quick rule: Copy Job for the 80% "just move it" cases. Pipelines when you need orchestration. Dataflows Gen2 when an analyst needs to shape the data.</p>
+        </div>
+      </section>
+
+      <section id="shortcuts-mirroring" class="panel" data-title="Zero Copy">
+        <div class="panel-grid">
+          <div class="section-heading">
+            <p class="section-kicker">Zero-ETL Options</p>
+            <h2>Do not move data unless the scenario needs it.</h2>
+          </div>
+          <div class="split-cards">
+            <article>
+              <img src="assets/image9.png" alt="">
+              <h3>Shortcuts</h3>
+              <p>A virtual pointer from OneLake to data that lives elsewhere. Reads happen on the source. No copy. No sync job. No drift.</p>
+              <ul><li>ADLS Gen2</li><li>Amazon S3</li><li>Google Cloud Storage</li><li>Dataverse</li><li>Another OneLake</li></ul>
+            </article>
+            <article>
+              <img src="assets/image10.png" alt="">
+              <h3>Mirroring</h3>
+              <p>Continuous replication of an OLTP source into Delta tables in OneLake. No ETL code and no Fabric CU on the replicate side.</p>
+              <ul><li>Azure SQL Database</li><li>Azure SQL MI</li><li>SQL Server on-prem</li><li>Cosmos DB</li><li>Snowflake</li><li>Databricks Unity Catalog</li><li>PostgreSQL / MySQL</li><li>Oracle</li></ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="incremental" class="panel" data-title="Incremental">
+        <div class="panel-grid">
+          <div class="section-heading">
+            <p class="section-kicker">Best Practices</p>
+            <h2>Incremental loads: pull what changed, not everything.</h2>
+            <p>The single biggest CU saving in any Fabric ingestion design.</p>
+          </div>
+          <div class="versus">
+            <article class="negative"><h3>Full refresh</h3><p>Truncate-and-reload every run.</p><ul><li>Simple, no watermark logic</li><li>Always consistent with source</li><li>Slow at scale and high CU per run</li><li>Heavy source load and throttling risk</li></ul></article>
+            <article class="positive"><h3>Incremental</h3><p>Pull only what changed since last run.</p><ul><li>Fast: minutes instead of hours</li><li>Cheap: fraction of the CU</li><li>Source-friendly small queries</li><li>Idempotent and safe to re-run</li></ul></article>
+          </div>
+          <p class="callout">Rule of thumb: if a table is over 1 GB or runs more than once a day, it should be incremental.</p>
+        </div>
+      </section>
+
+      <section id="load-modes" class="panel" data-title="Load Modes">
+        <div class="panel-grid">
+          <div class="section-heading">
+            <p class="section-kicker">Landing Modes</p>
+            <h2>Overwrite, append, or upsert?</h2>
+            <p>Pick the destination mode that matches the data's nature.</p>
+          </div>
+          <div class="mode-grid">
+            <article><h3>Overwrite</h3><p>Replace the table every run.</p><strong>Best for</strong><span>Small lookups, reference tables, snapshots without history.</span><strong>Risk</strong><span>Lose history, expensive on big tables.</span></article>
+            <article><h3>Append</h3><p>Add new rows only.</p><strong>Best for</strong><span>Events, audit logs, immutable facts, streaming destinations.</span><strong>Risk</strong><span>Duplicates on re-run without de-dupe.</span></article>
+            <article><h3>Upsert / Merge</h3><p>Update existing, insert new by key.</p><strong>Best for</strong><span>Dimensions, master data, idempotent re-runs.</span><strong>Risk</strong><span>Needs key columns, slowest of the three.</span></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="cost" class="panel" data-title="Cost">
+        <div class="panel-grid">
+          <div class="section-heading">
+            <p class="section-kicker">Capacity-Friendly Ingestion</p>
+            <h2>Do not burn your customer's CU.</h2>
+            <p>Five operating habits keep an F-SKU healthy under load.</p>
+          </div>
+          <div class="habit-grid">
+            <article><span>01</span><h3>Stagger schedules</h3><p>Spread heavy loads across the night instead of running everything at 02:00.</p></article>
+            <article><span>02</span><h3>Right tool, right job</h3><p>Cost low to high: Shortcuts, Mirroring, Copy Job, Pipelines, Dataflow Gen2.</p></article>
+            <article><span>03</span><h3>Push filters to source</h3><p>Use source WHERE clauses instead of pulling rows you will discard.</p></article>
+            <article><span>04</span><h3>Pause non-prod</h3><p>Dev and test capacities can pause overnight and weekends.</p></article>
+            <article><span>05</span><h3>Watch the Metrics App</h3><p>Per-item CU views spot noisy items before production throttles.</p></article>
+          </div>
+          <p class="callout danger">Fabric's 24h smoothing absorbs short bursts, but sustained overuse throttles every workload on the capacity.</p>
+        </div>
+      </section>
+
+      <section id="mistakes" class="panel" data-title="Mistakes">
+        <div class="panel-grid">
+          <div class="section-heading">
+            <p class="section-kicker">The Expensive Lessons</p>
+            <h2>Five mistakes that burn CU.</h2>
+          </div>
+          <div class="mistake-list">
+            <article><strong>Mistake</strong><p>Dataflow Gen2 as Bronze landing for high-volume tables.</p><strong>Fix</strong><p>Use Copy Job or Pipelines for raw movement.</p></article>
+            <article><strong>Mistake</strong><p>Full refresh nightly on a multi-GB table.</p><strong>Fix</strong><p>Switch to incremental with watermark or CDC.</p></article>
+            <article><strong>Mistake</strong><p>Every ingestion job scheduled at the same hour.</p><strong>Fix</strong><p>Stagger across a 2-hour window.</p></article>
+            <article><strong>Mistake</strong><p>Scheduled CDC pipelines for a source Mirroring supports.</p><strong>Fix</strong><p>Use Mirroring: free for replicate and lower latency.</p></article>
+            <article><strong>Mistake</strong><p>No source-side filter.</p><strong>Fix</strong><p>Push predicates to the source query.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="governance" class="panel" data-title="Governance">
+        <div class="panel-grid">
+          <div class="section-heading">
+            <p class="section-kicker">Governance & Cost</p>
+            <h2>What ingestion costs, and what it touches.</h2>
+          </div>
+          <div class="split-cards compact">
+            <article>
+              <h3>Capacity usage</h3>
+              <ul><li>Pipelines: per activity plus copy duration</li><li>Dataflows Gen2: higher, full Power Query engine</li><li>Copy Job: per copy duration only, lowest</li><li>Shortcuts: pay only when data is read</li><li>Mirroring: free for replicate, only storage</li></ul>
+            </article>
+            <article>
+              <h3>Governance & lineage</h3>
+              <ul><li>End-to-end lineage in Purview</li><li>Sensitivity labels travel with data</li><li>Tenant-level audit logs</li><li>Shortcuts inherit source ACLs</li></ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="demo" class="panel demo" data-title="Live Demo">
+        <div class="panel-grid demo-grid">
+          <div>
+            <p class="section-kicker">Live Demo</p>
+            <h2>Bringing data into Fabric, live.</h2>
+            <p>Thirty minutes inside Fabric: walking through several ingestion methods side by side.</p>
+          </div>
+          <div class="demo-rings" aria-hidden="true">
+            <button type="button" class="play-button" aria-label="Demo section marker"></button>
+          </div>
+          <div class="demo-steps">
+            <article><span>01</span><h3>Copy Job</h3><p>Set up bulk or incremental movement.</p></article>
+            <article><span>02</span><h3>Shortcut</h3><p>Show zero-copy access to data where it lives.</p></article>
+            <article><span>03</span><h3>Mirroring</h3><p>Review low-latency replication into OneLake.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="wrap" class="panel" data-title="Wrap">
+        <div class="panel-grid wrap-grid">
+          <div class="section-heading">
+            <p class="section-kicker">Wrap Up</p>
+            <h2>Six takeaways for partner conversations.</h2>
+          </div>
+          <ol class="takeaway-list">
+            <li>Fabric gives you five ingestion patterns. Use the right one.</li>
+            <li>Shortcuts beat copies; Mirroring beats scheduled CDC.</li>
+            <li>Default to incremental. Full refresh is the big CU mistake.</li>
+            <li>Pick the load mode that matches the data: overwrite, append, upsert.</li>
+            <li>Stagger schedules. Smoothing is not a free pass against throttling.</li>
+            <li>Sub-second streaming? Eventstream. That is Week 5.</li>
+          </ol>
+          <article class="next-week">
+            <span>Week 4</span>
+            <h3>Transformation & Data Science</h3>
+            <p>Lakehouse, notebooks, managed Spark, medallion architecture, MLflow, AutoML, and a Silver layer built live.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="thanks" class="panel thanks" data-title="Thanks">
+        <div class="panel-grid hero-grid">
+          <div class="hero-copy">
+            <p class="section-kicker">Fabric in 6 Weeks - Week 3 Complete</p>
+            <h2>Thank you.<br>Questions?</h2>
+            <p>Juraj Kurtulik<br>Solutions Architect - CoE Microsoft, TD SYNNEX</p>
+            <p><a href="mailto:Juraj.Kurtulik@tdsynnex.com">Juraj.Kurtulik@tdsynnex.com</a></p>
+            <p>See you Tuesday 9 June for Week 4: Transformation & Data Science.</p>
+          </div>
+          <div class="orbital-stage small" aria-hidden="true">
+            <img src="assets/fabric-mark.png" alt="">
+            <div class="orbit orbit-a"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="progress-rail" aria-label="Slide progress">
+      <div class="progress-bar"><span></span></div>
+      <div class="dots" aria-label="Section dots"></div>
+    </aside>
+
+    <footer class="controls" aria-label="Previous and next controls">
+      <button type="button" id="prevBtn" aria-label="Previous section">Prev</button>
+      <span id="slideStatus" aria-live="polite">1 / 19</span>
+      <button type="button" id="nextBtn" aria-label="Next section">Next</button>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
