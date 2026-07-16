@@ -182,7 +182,7 @@ button {
   display: grid;
   align-items: center;
   min-height: 100vh;
-  padding: 6rem clamp(1rem, 4vw, 4rem) 5.5rem;
+  padding: 6rem clamp(1rem, 3vw, 3.2rem) 5.5rem;
   scroll-snap-align: start;
   scroll-snap-stop: always;
   isolation: isolate;
@@ -209,7 +209,7 @@ button {
 }
 
 .panel-grid {
-  width: min(1180px, 100%);
+  width: min(1480px, 100%);
   margin: 0 auto;
 }
 
@@ -249,15 +249,15 @@ p {
 h1 {
   max-width: 11ch;
   margin-bottom: 1rem;
-  font-size: clamp(3.1rem, 7vw, 6.8rem);
+  font-size: clamp(3.4rem, 7.8vw, 8rem);
   line-height: 0.92;
   font-weight: 850;
 }
 
 h2 {
-  max-width: 13ch;
+  max-width: 16ch;
   margin-bottom: 1rem;
-  font-size: clamp(2.3rem, 5vw, 5.2rem);
+  font-size: clamp(2.6rem, 5.4vw, 5.8rem);
   line-height: 0.96;
   font-weight: 820;
 }
@@ -951,6 +951,70 @@ h3 {
   transform: none;
 }
 
+@media (min-width: 1400px) {
+  .panel {
+    padding-left: clamp(3rem, 4vw, 5rem);
+    padding-right: clamp(3rem, 4vw, 5rem);
+  }
+
+  .panel-grid {
+    width: min(1760px, 100%);
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(26rem, 0.85fr);
+  }
+
+  h1 {
+    font-size: clamp(6.2rem, 7vw, 9.4rem);
+  }
+
+  h2 {
+    max-width: 18ch;
+    font-size: clamp(4.2rem, 4.8vw, 6.8rem);
+  }
+
+  .lede,
+  .section-heading p,
+  .chapter-copy p,
+  .demo-grid > div > p {
+    font-size: clamp(1.25rem, 1.45vw, 1.7rem);
+  }
+
+  .timeline,
+  .agenda-grid,
+  .metric-grid,
+  .pattern-grid,
+  .decision-board,
+  .detail-stage,
+  .split-cards,
+  .versus,
+  .mode-grid,
+  .habit-grid,
+  .mistake-list,
+  .demo-steps {
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1700px) {
+  .panel-grid {
+    width: min(1840px, calc(100vw - 9rem));
+  }
+
+  .timeline-card,
+  .agenda-grid article,
+  .metric-card,
+  .pattern-card,
+  .split-cards article,
+  .versus article,
+  .mode-grid article,
+  .habit-grid article,
+  .mistake-list article {
+    padding: 1.45rem;
+  }
+}
+
 @keyframes turn {
   to {
     transform: rotate(360deg);
@@ -1067,18 +1131,18 @@ h3 {
   }
 }
 
-@media (min-width: 721px) and (max-height: 800px) {
+@media (min-width: 721px) and (max-height: 680px) {
   .panel {
     padding-top: 4.9rem;
     padding-bottom: 4.2rem;
   }
 
   h1 {
-    font-size: clamp(3rem, 6.1vw, 5.8rem);
+    font-size: clamp(3rem, 6.8vw, 6.8rem);
   }
 
   h2 {
-    font-size: clamp(2rem, 4vw, 3.7rem);
+    font-size: clamp(2.1rem, 4.4vw, 4.4rem);
   }
 
   .lede,
